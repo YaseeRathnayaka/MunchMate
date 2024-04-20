@@ -1,0 +1,52 @@
+.header{
+    display: flex;
+    padding-top: 20px;
+    padding-left: 70px;
+    border-bottom: 2px solid #a41e1e;
+}
+
+.header-logo{
+   height: 60px;
+   width: 60px;
+   
+}
+.header-buttons{
+    padding-left: 50px;
+    padding-top: 10px;
+    display: flex;
+   
+}
+.Home-button{
+    height: 30px;
+    width: 100px;
+    background-color: #a41e1e;
+    color: #ffffff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-right: 10px;
+    box-shadow: none;
+}
+.Login-button{
+    height: 30px;
+    width: 100px;
+    background-color: #69C28C;
+    color: #ffffff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-left: 500px;
+}
+.cart-image{
+    height: 30px;
+    width: 30px;
+    margin-left: 50px;
+}
+.cart-number{
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    background-color: #a41e1e;
+    margin-left: 10px;
+    
+}
