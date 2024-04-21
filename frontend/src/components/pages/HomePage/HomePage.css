@@ -1,4 +1,32 @@
-.slide-3{
-    
-    width: 200px;
+.home-container {
+    position: relative;
+  }
+  
+  .image-container {
+    position: relative;
+    overflow: hidden; /* Ensures the button is not visible outside the image */
+  }
+  
+  .slide-3 {
+    width: 100%;
+    height: auto;
+  }
+  
+  .overlap-button {
+    position: absolute;
+    bottom: 50%; /* Positions the button vertically centered on the bottom half of the image */
+    left: 50%; /* Positions the button horizontally centered on the image */
+    transform: translate(-50%, 50%); /* Moves the button half its height upwards and half its width to the left */
+  }
+  
+.order-button{
+    height: 70px;
+    width: 300px;
+    background-color: #a41e1e;
+    color: #ffffff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-left: 650px;
+    box-shadow: none;
 }
