@@ -24,7 +24,7 @@ const Header = () => {
                 <img src={cart} className='cart-image'/>
             </div>
             <div className='cart-number'>
-               <center>2</center>
+                2
             </div>
         </div>
         
