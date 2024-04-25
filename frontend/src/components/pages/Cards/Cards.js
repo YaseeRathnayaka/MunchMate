@@ -1,18 +1,19 @@
 import React from 'react'
 import '../Cards/Cards.css'
-import img from '../../../assets/chicken bucket.jpg'
+
 
 const Cards =({item}) => {
-    const {name, age} = item;
+    const {image, name, description, price} = item;
   return (
     <div className='cards'>
       <div className='image-box'>
-        <img src={img} alt='image' />
-      <div className='deatils'>
+        <img src={image} className='image' alt='image' />
+      <div className='details'><center>
         <p>{name}</p>
-        <p>{age}</p>
-        <button>Add to cart</button>
-      </div>
+        <p>{description}</p>
+        <p>{price}</p>
+        <button className='addtocart'>Add to cart</button>
+      </center></div>
       </div>
     </div>
   )
