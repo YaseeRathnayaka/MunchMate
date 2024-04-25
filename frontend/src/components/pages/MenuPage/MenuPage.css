@@ -1,3 +1,15 @@
 .card-map{
     display: flex;
+    margin-top: 20px;
+}
+.menu-button{
+    height: 30px;
+    width: 100px;
+    background-color: #69C28C;
+    color: #ffffff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 10px;
 }

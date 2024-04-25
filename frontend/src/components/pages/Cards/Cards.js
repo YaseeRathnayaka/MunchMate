@@ -9,9 +9,9 @@ const Cards =({item}) => {
       <div className='image-box'>
         <img src={image} className='image' alt='image' />
       <div className='details'><center>
-        <p>{name}</p>
-        <p>{description}</p>
-        <p>{price}</p>
+        <p className='name'>{name}</p><br></br>
+        <p className='description'>{description}</p>
+        <p className='price'>{price}</p>
         <button className='addtocart'>Add to cart</button>
       </center></div>
       </div>

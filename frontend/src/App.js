@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/pages/HomePage/HomePage'
 import MenuPage from './components/pages/MenuPage/MenuPage'
-import Cart from './components/pages/Cart/Cart'
+import Cart from './components/containers/Cart/Cart'
 
 const App = () => {
   return (

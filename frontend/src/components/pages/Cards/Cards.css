@@ -1,5 +1,5 @@
 .cards{
-    height: 320px;
+    height: 400px;
     width: 200px;
     border-radius: 20px;
     margin-top: 10px;
@@ -17,6 +17,23 @@
     border-bottom: 1px;
     border-radius: 20px;
 }
-.details{
-    
+.description{
+   font-size: small;
+
+}
+
+.price{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.addtocart{
+    height: 40px;
+    width: 150px;
+    background-color: #FF0000;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    box-shadow: none;
 }
