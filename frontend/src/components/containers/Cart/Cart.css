@@ -1,8 +1,15 @@
 .cart{
-    height: 600px;
-    width: 350px;
-    background-color: aqua;
+    height: 500px;
+    width: 400px;
+    background-color: #EAD5D5;
     border-radius: 40px;
-    margin-left: 1100px;
+    margin-left: 30px;
     display: flex;
+}
+.cart-header{
+    height: 80px;
+    width: 400px;
+    background-color: #EAD5D5;
+    border-radius: 40px;
+    border-bottom: none;
 }

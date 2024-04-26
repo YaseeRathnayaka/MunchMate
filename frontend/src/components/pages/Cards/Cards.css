@@ -1,4 +1,4 @@
-.cards{
+.cards {
     height: 400px;
     width: 200px;
     border-radius: 20px;
@@ -8,25 +8,32 @@
     display: flex;
     flex-direction: row;
     color: #ffff;
-   
-
-}
-.image{
+    position: relative; /* Add position: relative for the lifting effect */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition for box-shadow and transform */
+  }
+  
+  .cards:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px); /* Lift up effect */
+  }
+  
+  .image {
     height: 150px;
     width: 200px;
     border-bottom: 1px;
     border-radius: 20px;
-}
-.description{
-   font-size: small;
-
-}
-
-.price{
+  }
+  
+  .description {
+    font-size: small;
+  }
+  
+  .price {
     margin-top: 10px;
     margin-bottom: 15px;
-}
-.addtocart{
+  }
+  
+  .addtocart {
     height: 40px;
     width: 150px;
     background-color: #FF0000;
@@ -36,4 +43,5 @@
     cursor: pointer;
     margin-right: 10px;
     box-shadow: none;
-}
+  }
+  
