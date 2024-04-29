@@ -7,45 +7,42 @@ import Cart from '../../containers/Cart/Cart';
 
 const MenuPage = () => {
     const [cart, setCart] = useState([]);
-    const [warining, setWarining] = useState([]);
+    const [warning, setWarning] = useState([]);
 
-    const handleClick = (item) =>{ 
+    const handleClick = (item) => { 
         let isPresent = false;
         cart.forEach((product)=>{
-                if(item.id === product.id)
+            if(item.id === product.id)
                 isPresent = true;
         })
         if(isPresent)
-         return;
+            return;
         setCart([...cart, item]);
     }
 
     return (
         <div className='menu-container'>
-            <Header size={cart.length} /> {/* Pass the cart size to Header */}
+            <Header size={cart.length} />
             <div className='menu-buttons'>
-                <button className='menu-button' >Mains</button>
-                <button className='menu-button' >Burgers</button>
-                <button className='menu-button' >Wraps</button>
-                <button className='menu-button' >Biriyani</button>
-                <button className='menu-button' >Beverages</button>
-                <button className='menu-button' >Desserts</button>
-    
-    </div>
-    <div className='cart-card'>
-    <div className='card-map'>
-        {list.map((item) => (
-        <Cards item={item} handleClick={handleClick} key={item.id} />
-    ))}
-    <div>
-        <Cart />
-    </div>
-        </div> 
-    </div>
-   
+                <button className='menu-button'>Mains</button>
+                <button className='menu-button'>Burgers</button>
+                <button className='menu-button'>Wraps</button>
+                <button className='menu-button'>Biriyani</button>
+                <button className='menu-button'>Beverages</button>
+                <button className='menu-button'>Desserts</button>
+            </div>
+            <div className='content-container'>
+                <div className='card-map'>
+                    {list.map((item) => (
+                        <Cards item={item} handleClick={handleClick} key={item.id} />
+                    ))}
+                </div>
+                <div className='cart-container'>
+                    <Cart cart={cart} />
+                </div>
+            </div>
+        </div>
+    );
+};
 
-    </div>
-  )
-}
-
-export default MenuPage
+export default MenuPage;

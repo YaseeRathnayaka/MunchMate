@@ -3,7 +3,6 @@
     width: 400px;
     background-color: #EAD5D5;
     border-radius: 40px;
-    margin-left: 30px;
     display: flex;
     flex-direction: column;
 }
@@ -27,12 +26,15 @@
    
 }
 .cart-footer{
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-radius: 40px;
     height: 80px;
     display: flex;
     width: 400px;
     margin-top: auto;
     margin-left: auto;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0 ;
 }
 .cart-image{
     height: 30px;
