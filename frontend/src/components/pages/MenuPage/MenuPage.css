@@ -12,7 +12,14 @@
     cursor: pointer;
     margin-top: 20px;
     margin-left: 10px;
-}
+    position: relative; /* Add position: relative for the lifting effect */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition for box-shadow and transform */
+  }
+  
+  .menu-button:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px); /* Lift up effect */
+  }
 .card-map{
     margin-left: 20px;
 }

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Navigate } from 'react-router';
 import logo from '../../../assets/logo.png';
-import cart from '../../../assets/shopping-cart.png';
+import cartlogo from '../../../assets/shopping-cart.png';
 import "./Header.css"
 
 const Home = () =>{
     Navigate('/home');
 }
-const Header = () => {
+const Header = ({size}) => {
   return (
     <div className='header'>
         <div>
@@ -21,10 +21,10 @@ const Header = () => {
 
             <button className='Login-button' onClick={Home}>Login</button>
             <div>
-                <img src={cart} className='cart-image'/>
+                <img src={cartlogo} className='cart-image-header'/>
             </div>
             <div className='cart-number'>
-                2
+                <span>{size}</span>
             </div>
         </div>
         

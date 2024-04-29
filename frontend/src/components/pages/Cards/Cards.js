@@ -2,8 +2,8 @@ import React from 'react'
 import '../Cards/Cards.css'
 
 
-const Cards =({item}) => {
-    const {image, name, description, price} = item;
+const Cards =({item, handleClick}) => {
+    const {image, name, description, price, id} = item;
   return (
     <div className='cards'>
       <div className='image-box'>
@@ -12,7 +12,7 @@ const Cards =({item}) => {
         <p className='name'>{name}</p><br></br>
         <p className='description'>{description}</p>
         <p className='price'>{price}</p>
-        <button className='addtocart'>Add to cart</button>
+        <button className='addtocart' onClick={()=>handleClick(item)}>Add to cart</button>
       </center></div>
       </div>
     </div>
