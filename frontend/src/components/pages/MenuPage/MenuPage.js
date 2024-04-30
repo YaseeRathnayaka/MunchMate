@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import list from '../../../data/Data';
-import Cards from '../Cards/Cards';
+import Cards from '../Cards/Mains/MainsCards';
 import Header from '../../containers/Header/Header';
 import '../MenuPage/MenuPage.css';
 import Cart from '../../containers/Cart/Cart';

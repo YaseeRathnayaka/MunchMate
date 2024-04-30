@@ -1,8 +1,8 @@
 import React from 'react'
-import '../Cards/Cards.css'
+import '../Mains/MainsCards.css'
 
 
-const Cards =({item, handleClick}) => {
+const Mains =({item, handleClick}) => {
     const {image, name, description, price, id} = item;
   return (
     <div className='cards'>
@@ -19,4 +19,4 @@ const Cards =({item, handleClick}) => {
   )
 }
 
-export default Cards
+export default Mains
