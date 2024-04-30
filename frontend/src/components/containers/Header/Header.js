@@ -1,36 +1,50 @@
-import React from 'react'
-import { Navigate } from 'react-router';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
 import cartlogo from '../../../assets/shopping-cart.png';
-import "./Header.css"
+import "./Header.css";
 
-const Home = () =>{
-    Navigate('/home');
-}
-const Header = ({size}) => {
-  return (
-    <div className='header'>
-        <div>
-            <img src={logo} className='header-logo' />  
-        </div>
-        <div className='header-buttons'>
-            <button className='Home-button' onClick={Home}>Home</button>
-            <button className='Home-button' onClick={Home}>Menu</button>
-            <button className='Home-button' onClick={Home}>About</button>
-            <button className='Home-button' onClick={Home}>Promotions</button>
+const Header = ({ size }) => {
+    const navigate = useNavigate();
 
-            <button className='Login-button' onClick={Home}>Login</button>
+    const NavigateToHome = () => {
+        navigate('/home');
+    }
+    const NavigateToMenu = () => {
+        navigate('/menu');
+    }
+    const NavigateToAbout = () => {
+        navigate('/about');
+    }
+    const NavigateToPromotions = () => {
+        navigate('/promotions');
+    }
+
+    const NavigateToLogin = () => {
+        navigate('/login');
+    }
+
+    return (
+        <div className='header'>
             <div>
-                <img src={cartlogo} className='cart-image-header'/>
+                <img src={logo} className='header-logo' alt="Logo" />  
             </div>
-            <div className='cart-number'>
-                <span>{size}</span>
+            <div className='header-buttons'>
+                <button className='Home-button' onClick={NavigateToHome}>Home</button>
+                <button className='Home-button' onClick={NavigateToMenu}>Menu</button>
+                <button className='Home-button' onClick={NavigateToAbout}>About</button>
+                <button className='Home-button' onClick={NavigateToPromotions}>Promotions</button>
+
+                <button className='Login-button' onClick={NavigateToLogin}>Login</button>
+                <div>
+                    <img src={cartlogo} className='cart-image-header' alt="Cart" />
+                </div>
+                <div className='cart-number'>
+                    <span>{size}</span>
+                </div>
             </div>
         </div>
-        
-      
-    </div>
-  )
+    );
 }
 
-export default Header
+export default Header;

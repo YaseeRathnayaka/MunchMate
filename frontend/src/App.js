@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/pages/HomePage/HomePage'
 import MenuPage from './components/pages/MenuPage/MenuPage'
 import Cart from './components/containers/Cart/Cart'
-import MainsPage from './components/pages/Cards/Mains/MainsCards'
 import BurgersPage from './components/pages/Cards/Burgers/Burgers'
 import BiriyaniPage from './components/pages/Cards/Biriyani/Biriyani'
 import BeveragesPage from './components/pages/Cards/Beverages/Beverages'
@@ -19,8 +18,9 @@ const App = () => {
               <Route path='/home' element={<HomePage/>}/>
               <Route path='/menu' element={<MenuPage/>}/>
               <Route path='/about' element={<Cart/>}/>
+              <Route path='/login' element={<Cart/>}/>
               <Route path='/promotions' element={<MenuPage/>}/>
-              <Route path='/menu/mains' element={<MainsPage/>}/>
+              <Route path='/menu/mains' element={<MenuPage/>}/>
               <Route path='/menu/burgers' element={<BurgersPage/>}/>
               <Route path='/menu/biriyani' element={<BiriyaniPage/>}/>
               <Route path='/menu/beverages' element={<BeveragesPage/>}/>
