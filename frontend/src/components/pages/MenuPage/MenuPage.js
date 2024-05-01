@@ -1,6 +1,6 @@
 // MenuPage.js
 import React, { useState } from 'react';
-import List from '../../../data/Data'; // Import the list of items
+import List from '../../../data/MainsData'; // Import the list of items
 import Cards from '../Cards/Mains/MainsCards';
 import Header from '../../containers/Header/Header';
 import '../MenuPage/MenuPage.css';
