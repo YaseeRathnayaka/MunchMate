@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Cards from '../Cards/Mains/MainsCards';
+import Cards from '../Cards/Cards';
 import Header from '../../containers/Header/Header';
 import '../MenuPage/MenuPage.css';
 import Cart from '../../containers/Cart/Cart';
