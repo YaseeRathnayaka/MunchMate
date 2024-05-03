@@ -1,14 +1,13 @@
-// MainsCards.js
 import React from 'react';
-import '../Mains/MainsCards.css';
+import './MainsCards.css';
 
-const Mains = ({ item, handleClick }) => {
-    const { image, name, description, price } = item; // Ensure all properties are available
+const MainsCards = ({ item, image, handleClick }) => {
+    const { name, description, price } = item;
 
     return (
         <div className='cards'>
             <div className='image-box'>
-                <img src={image} className='image' alt='image' />
+                <img src={image} className='image' alt='Menu item' />
                 <div className='details'>
                     <center>
                         <p className='name'>{name}</p><br></br>
@@ -22,4 +21,4 @@ const Mains = ({ item, handleClick }) => {
     );
 }
 
-export default Mains;
+export default MainsCards;

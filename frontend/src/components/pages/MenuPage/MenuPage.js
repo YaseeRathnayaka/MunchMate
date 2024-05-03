@@ -1,60 +1,57 @@
-// MenuPage.js
-import React, { useState } from 'react';
-import List from '../../../data/MainsData'; // Import the list of items
+import React, { useState, useEffect } from 'react';
 import Cards from '../Cards/Mains/MainsCards';
 import Header from '../../containers/Header/Header';
 import '../MenuPage/MenuPage.css';
 import Cart from '../../containers/Cart/Cart';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const MenuPage = () => {
     const [cart, setCart] = useState([]);
-    const [warning, setWarning] = useState([]);
+    const [menuItems, setMenuItems] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchMenuItems = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/getMains');
+                setMenuItems(response.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        fetchMenuItems();
+    }, []);
 
     const handleClick = (item) => { 
         let isPresent = false;
-        cart.forEach((product)=>{
-            if(item.id === product.id)
+        cart.forEach((product) => {
+            if (item.id === product.id)
                 isPresent = true;
-        })
-        if(isPresent)
-            return;
-        setCart([...cart, item]);
+        });
+        if (!isPresent)
+            setCart([...cart, item]);
     }
 
-    const NavigateToMains = () => {
-        navigate('/menu/mains');
+    const navigateToCategory = (category) => {
+        navigate(`/menu/${category}`);
     }
-    const NavigateToBurgers = () => {
-        navigate('/menu/burgers');
-    }
-    const NavigateToBeverages = () => {
-        navigate('/menu/beverages');
-    }
-    const NavigateToBiriyani = () => {
-        navigate('/menu/biriyani');
-    }
-    const NavigateToDesserts = () => {
-        navigate('/menu/desserts');
-    }
-    const NavigateToWraps = () => {
-        navigate('/menu/wraps');
-    }
+
     return (
         <div className='menu-container'>
             <Header size={cart.length} />
             <div className='menu-buttons'>
-                <button className='menu-button' onClick={NavigateToMains}>Mains</button>
-                <button className='menu-button' onClick={NavigateToBurgers}>Burgers</button>
-                <button className='menu-button' onClick={NavigateToWraps}>Wraps</button>
-                <button className='menu-button' onClick={NavigateToBiriyani}>Biriyani</button>
-                <button className='menu-button' onClick={NavigateToBeverages}>Beverages</button>
-                <button className='menu-button' onClick={NavigateToDesserts}>Desserts</button>
+                <button className='menu-button' onClick={() => navigateToCategory('mains')}>Mains</button>
+                <button className='menu-button' onClick={() => navigateToCategory('burgers')}>Burgers</button>
+                <button className='menu-button' onClick={() => navigateToCategory('wraps')}>Wraps</button>
+                <button className='menu-button' onClick={() => navigateToCategory('biriyani')}>Biriyani</button>
+                <button className='menu-button' onClick={() => navigateToCategory('beverages')}>Beverages</button>
+                <button className='menu-button' onClick={() => navigateToCategory('desserts')}>Desserts</button>
             </div>
             <div className='content-container'>
                 <div className='card-map'>
-                    {List.map((item) => (
+                    {menuItems.map((item) => (
                         <Cards item={item} handleClick={handleClick} key={item.id} />
                     ))}
                 </div>
@@ -67,7 +64,3 @@ const MenuPage = () => {
 };
 
 export default MenuPage;
-
-
-
-
