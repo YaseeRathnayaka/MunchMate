@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/pages/HomePage/HomePage'
 import MenuPage from './components/pages/MenuPage/MenuPage'
 import Cart from './components/containers/Cart/Cart'
-import BurgersPage from './components/pages/Cards/Burgers/Burgers'
-import BiriyaniPage from './components/pages/Cards/Biriyani/Biriyani'
-import BeveragesPage from './components/pages/Cards/Beverages/Beverages'
-import WrapsPage from './components/pages/Cards/Wraps/Wraps'
-import DessertsPage from './components/pages/Cards/Desserts/Desserts'
+import BurgersPage from './components/pages/Burgers/Burgers'
+import BiriyaniPage from './components/pages/Biriyani/Biriyani'
+import BeveragesPage from './components/pages/Beverages/Beverages'
+import WrapsPage from './components/pages/Wraps/Wraps'
+import DessertsPage from './components/pages/Desserts/Desserts'
 
 const App = () => {
   return (

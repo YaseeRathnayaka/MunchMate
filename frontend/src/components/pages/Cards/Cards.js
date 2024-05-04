@@ -1,13 +1,13 @@
 import React from 'react';
 import './Cards.css';
 
-const Cards = ({ item, image, handleClick }) => {
-    const { name, description, price } = item;
+const Cards = ({ item, handleClick }) => {
+    const { name, description, price, imageUrl } = item;
 
     return (
         <div className='cards'>
             <div className='image-box'>
-                <img src={image} className='image' alt='Menu item' />
+                <img src={imageUrl} className='image' alt='Menu item' />
                 <div className='details'>
                     <center>
                         <p className='name'>{name}</p><br></br>
