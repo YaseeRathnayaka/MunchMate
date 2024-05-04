@@ -6,8 +6,9 @@ import Header from '../../containers/Header/Header';
 const AboutUs = () => {
   return (
     
-    <div className="about-us-container" >
-        
+    <div className="about" >
+        <Header />
+        <div className='about-us-container'>
       <div className="section">
         <h2>Our Story</h2>
         <p>
@@ -49,6 +50,7 @@ const AboutUs = () => {
           [Your Name]<br/>
           Founder & Head Chef, [Your Restaurant Name]
         </p>
+      </div>
       </div>
     </div>
   );
