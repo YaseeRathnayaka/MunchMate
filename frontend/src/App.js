@@ -8,6 +8,7 @@ import BiriyaniPage from './components/pages/Biriyani/Biriyani'
 import BeveragesPage from './components/pages/Beverages/Beverages'
 import WrapsPage from './components/pages/Wraps/Wraps'
 import DessertsPage from './components/pages/Desserts/Desserts'
+import MainsUploads from './components/Forms/Mains/MainsUpload';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
               <Route path='/menu/beverages' element={<BeveragesPage/>}/>
               <Route path='/menu/desserts' element={<DessertsPage/>}/>
               <Route path='/menu/wraps' element={<WrapsPage/>}/>
+              <Route path='/mainsupload' element={<MainsUploads/>}/>
               
           </Routes>
       </Router>
