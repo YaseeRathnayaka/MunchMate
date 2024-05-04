@@ -9,6 +9,8 @@ import BeveragesPage from './components/pages/Beverages/Beverages'
 import WrapsPage from './components/pages/Wraps/Wraps'
 import DessertsPage from './components/pages/Desserts/Desserts'
 import MainsUploads from './components/Forms/Mains/MainsUpload';
+import About from './components/pages/About/About';
+import Promotions from './components/pages/Promotions/Promotions';
 
 const App = () => {
   return (
@@ -18,8 +20,8 @@ const App = () => {
               <Route path='/' element={<HomePage/>}/>
               <Route path='/home' element={<HomePage/>}/>
               <Route path='/menu' element={<MenuPage/>}/>
-              <Route path='/about' element={<Cart/>}/>
-              <Route path='/promotions' element={<MenuPage/>}/>
+              <Route path='/about' element={<About/>}/>
+              <Route path='/promotions' element={<Promotions/>}/>
               <Route path='/menu/mains' element={<MenuPage/>}/>
               <Route path='/menu/burgers' element={<BurgersPage/>}/>
               <Route path='/menu/biriyanis' element={<BiriyaniPage/>}/>
