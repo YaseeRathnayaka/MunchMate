@@ -4,7 +4,8 @@ const mainsSchema = new mongoose.Schema({
         id: Number,
         name: String,
         description: String,
-        price: String 
+        price: String, 
+        imageUrl: String
 
 })
 

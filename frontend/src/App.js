@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/pages/HomePage/HomePage'
 import MenuPage from './components/pages/MenuPage/MenuPage'
-import Cart from './components/containers/Cart/Cart'
+import LoginPage from './components/Forms/Login/Login'
 import BurgersPage from './components/pages/Burgers/Burgers'
 import BiriyaniPage from './components/pages/Biriyani/Biriyani'
 import BeveragesPage from './components/pages/Beverages/Beverages'
@@ -19,6 +19,7 @@ const App = () => {
           <Routes>
               <Route path='/' element={<HomePage/>}/>
               <Route path='/home' element={<HomePage/>}/>
+              <Route path='/login' element={<LoginPage/>}/>
               <Route path='/menu' element={<MenuPage/>}/>
               <Route path='/about' element={<About/>}/>
               <Route path='/promotions' element={<Promotions/>}/>

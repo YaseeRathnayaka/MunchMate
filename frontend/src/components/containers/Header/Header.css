@@ -56,3 +56,58 @@
     color: #a41e1e;
     
 }
+/* Add the following CSS for the pop-up login */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 1000; /* Ensure the overlay is on top of everything */
+    display: none; /* Initially hidden */
+  }
+  
+  .login-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the pop-up */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1001; /* Ensure the pop-up is on top of the overlay */
+    display: none; /* Initially hidden */
+    max-width: 90%; /* Ensure the pop-up fits within the screen */
+    max-height: 90%; /* Ensure the pop-up fits within the screen */
+    overflow: auto; /* Add scrollbar if content overflows */
+  }
+  
+  /* Add animation */
+  .login-popup.show {
+    display: block; /* Show the pop-up */
+    animation: fadeIn 0.5s ease; /* Fade-in animation */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .blur-background {
+    filter: blur(3px); /* Blur effect for the background */
+  }
+  
+  .popup-content {
+    position: relative;
+    z-index: 1002; /* Ensure pop-up content is on top of the pop-up background */
+  }
+  
+  .login-popup.show + .overlay {
+    display: block; /* Show the overlay when the pop-up is displayed */
+  }
+  
