@@ -1,33 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
 import cartlogo from '../../../assets/shopping-cart.png';
 import "./Header.css";
-import Login from '../../Forms/Login/Login';
 
 const Header = ({ size }) => {
     const navigate = useNavigate();
-    const [showLoginPopup, setShowLoginPopup] = useState(false);
 
-    const NavigateToHome = () => {
-        navigate('/home');
-    }
-    const NavigateToMenu = () => {
-        navigate('/menu');
-    }
-    const NavigateToAbout = () => {
-        navigate('/about');
-    }
-    const NavigateToPromotions = () => {
-        navigate('/promotions');
-    }
-
-    const NavigateToLogin = () => {
-        setShowLoginPopup(true);
-    }
-
-    const closeLoginPopup = () => {
-        setShowLoginPopup(false);
+    const NavigateTo = (path) => {
+        navigate(path);
     }
 
     return (
@@ -36,12 +17,12 @@ const Header = ({ size }) => {
                 <img src={logo} className='header-logo' alt="Logo" />  
             </div>
             <div className='header-buttons'>
-                <button className='Home-button' onClick={NavigateToHome}>Home</button>
-                <button className='Home-button' onClick={NavigateToMenu}>Menu</button>
-                <button className='Home-button' onClick={NavigateToAbout}>About</button>
-                <button className='Home-button' onClick={NavigateToPromotions}>Promotions</button>
+                <button className='Home-button' onClick={() => NavigateTo('/home')}>Home</button>
+                <button className='Home-button' onClick={() => NavigateTo('/menu')}>Menu</button>
+                <button className='Home-button' onClick={() => NavigateTo('/about')}>About</button>
+                <button className='Home-button' onClick={() => NavigateTo('/promotions')}>Promotions</button>
 
-                <button className='Login-button' onClick={NavigateToLogin}>Login</button>
+                <button className='Login-button' onClick={() => NavigateTo('/login')}>Login</button>
                 <div>
                     <img src={cartlogo} className='cart-image-header' alt="Cart" />
                 </div>
@@ -49,15 +30,6 @@ const Header = ({ size }) => {
                     <span>{size}</span>
                 </div>
             </div>
-
-            {showLoginPopup && (
-                <div className="login-popup">
-                    <div className="popup-content">
-                        <Login />
-                        <button onClick={closeLoginPopup}>Close</button>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
