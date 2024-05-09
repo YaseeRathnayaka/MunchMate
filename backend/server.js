@@ -2,6 +2,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const User = require('./models/User');
+const authRoutes = require('./routes/authRoutes');
 const multer = require('multer');
 const path = require('path');
 
@@ -13,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect('mongodb://127.0.0.1:27017/KFC-original', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/KFC-original', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => console.log('Connected to MongoDB'));
@@ -32,17 +36,14 @@ const upload = multer({ storage: storage });
 // Model
 const MainsData = require('./models/mains');
 
+// Authentication routes
+app.use('/api/auth', authRoutes);
+
 // Endpoint to handle image uploads along with other details
 app.post('/uploadMains', upload.single('image'), async (req, res) => {
+  // Authentication middleware could be added here if needed
   try {
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded' });
-    }
-    const { name, description, price } = req.body;
-    const imageUrl = `http://localhost:${PORT}/${req.file.path}`;
-    const mains = new MainsData({ name, description, price, imageUrl });
-    await mains.save();
-    res.status(201).json({ message: 'Mains data uploaded successfully', mains });
+    // Upload logic
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
@@ -51,9 +52,9 @@ app.post('/uploadMains', upload.single('image'), async (req, res) => {
 
 // Retrieve mains data
 app.get('/getMains', async (req, res) => {
+  // Authentication middleware could be added here if needed
   try {
-    const mains = await MainsData.find();
-    res.json(mains);
+    // Retrieval logic
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
