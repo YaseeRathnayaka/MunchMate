@@ -2,10 +2,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const User = require('./models/User');
-const authRoutes = require('./routes/authRoutes');
 const multer = require('multer');
 const path = require('path');
 
@@ -17,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/KFC-original', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/KFC-original', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => console.log('Connected to MongoDB'));
@@ -36,14 +32,17 @@ const upload = multer({ storage: storage });
 // Model
 const MainsData = require('./models/mains');
 
-// Authentication routes
-app.use('/api/auth', authRoutes);
-
 // Endpoint to handle image uploads along with other details
 app.post('/uploadMains', upload.single('image'), async (req, res) => {
-  // Authentication middleware could be added here if needed
   try {
-    // Upload logic
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+    const { name, description, price } = req.body;
+    const imageUrl = `http://localhost:${PORT}/${req.file.path}`;
+    const mains = new MainsData({ name, description, price, imageUrl });
+    await mains.save();
+    res.status(201).json({ message: 'Mains data uploaded successfully', mains });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
@@ -52,9 +51,46 @@ app.post('/uploadMains', upload.single('image'), async (req, res) => {
 
 // Retrieve mains data
 app.get('/getMains', async (req, res) => {
-  // Authentication middleware could be added here if needed
   try {
-    // Retrieval logic
+    const mains = await MainsData.find();
+    res.json(mains);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+// Registration route
+app.post('/register', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Username already exists' });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ username, password: hashedPassword });
+    await user.save();
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Login route
+app.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
+    const token = jwt.sign({ userId: user._id }, 'your_secret_key');
+    res.json({ message: 'Login successful', token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });

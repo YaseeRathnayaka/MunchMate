@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import '../Login/Login.css';
 import loginImage from '../../../assets/buger.webp';
 import kfclogo from '../../../assets/logo.png';
-import axios from 'axios'; // Import axios for making HTTP requests
+import axios from 'axios';
+import {Link } from 'react-router-dom'
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post('http://localhost:3001/', { email, password });
       // Handle successful login response here (e.g., redirect to home page)
       console.log(response.data);
     } catch (error) {
@@ -27,25 +28,17 @@ const Login = () => {
         <div>
           <img src={kfclogo} className='kfclogo-login' alt=''/>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div>E-mail</div>
-          <input 
-            type="email" 
-            name="email" 
-            placeholder="Your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div>Password</div>
-          <input 
-            type="password"  
-            name="password"  
-            placeholder="Your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">Submit</button>
-        </form>
+       <form action='POST'>
+              <input type='email' onChange={(e) =>{setEmail(e.target.value)}} placeholder='Email' />
+              <input type='password' onChange={(e) =>{setPassword(e.target.value)}} placeholder='Password' />
+
+              <input type='submit' onClick={Submit} />
+       </form>
+       <br />
+       <p>OR</p>
+       <br />
+
+       <Link to='/menu'>Sign Up</Link>
       </div>
       <div className='form-image-container'>
         <img src={loginImage} className='form-image-container' alt="Login" />

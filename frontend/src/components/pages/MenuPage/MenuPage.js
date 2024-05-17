@@ -25,11 +25,7 @@ const MenuPage = () => {
     }, []);
 
     const handleClick = (item) => { 
-        let isPresent = false;
-        cart.forEach((product) => {
-            if (item.id === product.id)
-                isPresent = true;
-        });
+        let isPresent = cart.some(product => product.id === item.id);
         if (!isPresent)
             setCart([...cart, item]);
     }
