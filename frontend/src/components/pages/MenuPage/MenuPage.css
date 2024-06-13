@@ -1,34 +1,54 @@
-.card-map{
+.menu-container {
     display: flex;
-    margin-top: 20px;
-    flex: 1;
-    margin-left: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Full width */
 }
-.menu-buttons{
-    margin-left: 10px;
+
+.menu-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap; /* Allow buttons to wrap */
 }
-.menu-button{
-    height: 30px;
-    width: 100px;
-    background-color: #69C28C;
-    color: #ffffff;
+
+.menu-button {
+    margin: 5px 10px;
+    padding: 10px 20px;
+    background-color: #a41e1e;
+    color: white;
     border: none;
-    border-radius: 40px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
-    margin-left: 10px;
-    position: relative; /* Add position: relative for the lifting effect */
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition for box-shadow and transform */
-  }
-  
-  .menu-button:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-4px); /* Lift up effect */
-  }
- 
+}
+
 .content-container {
     display: flex;
+    justify-content: space-between;
+    width: 90%; /* Center the content */
 }
-.cart-container{
-    padding-left: -100px;
+
+.card-map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 75%; /* Adjusted width */
+    max-height: 70vh; /* Max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 10px; /* Padding for scrollbar */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.cart-container {
+    width: 25%;
+    height: 70vh; /* Fixed height */
+    position: sticky;
+    top: 0; /* Stick to the top of the viewport */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center cards */
 }

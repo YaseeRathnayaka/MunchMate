@@ -1,49 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Cards from '../Cards/Cards';
 import Header from '../../containers/Header/Header';
 import '../MenuPage/MenuPage.css';
 import Cart from '../../containers/Cart/Cart';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import List from '../../../data/MainsData';
 
 const MenuPage = () => {
     const [cart, setCart] = useState([]);
-    const [menuItems, setMenuItems] = useState([]);
-    const navigate = useNavigate();
+    const [menuItems, setMenuItems] = useState(List);
 
-    useEffect(() => {
-        const fetchMenuItems = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/getMains');
-                setMenuItems(response.data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
+    const handleClick = (item) => {
+        const itemInCart = cart.find(product => product.id === item.id);
+        if (itemInCart) {
+            setCart(cart.map(product => product.id === item.id
+                ? { ...itemInCart, quantity: itemInCart.quantity + 1 }
+                : product
+            ));
+        } else {
+            setCart([...cart, { ...item, quantity: 1 }]);
+        }
+    };
 
-        fetchMenuItems();
-    }, []);
+    const updateQuantity = (id, quantity) => {
+        setCart(cart.map(item => item.id === id
+            ? { ...item, quantity: Number(quantity) }
+            : item
+        ));
+    };
 
-    const handleClick = (item) => { 
-        let isPresent = cart.some(product => product.id === item.id);
-        if (!isPresent)
-            setCart([...cart, item]);
-    }
-
-    const navigateToCategory = (category) => {
-        navigate(`/menu/${category}`);
-    }
+    const removeItem = (id) => {
+        setCart(cart.filter(item => item.id !== id));
+    };
 
     return (
         <div className='menu-container'>
             <Header size={cart.length} />
             <div className='menu-buttons'>
-                <button className='menu-button' onClick={() => navigateToCategory('mains')}>Mains</button>
-                <button className='menu-button' onClick={() => navigateToCategory('burgers')}>Burgers</button>
-                <button className='menu-button' onClick={() => navigateToCategory('wraps')}>Wraps</button>
-                <button className='menu-button' onClick={() => navigateToCategory('biriyani')}>Biriyani</button>
-                <button className='menu-button' onClick={() => navigateToCategory('beverages')}>Beverages</button>
-                <button className='menu-button' onClick={() => navigateToCategory('desserts')}>Desserts</button>
+                <button className='menu-button'>Hot n Crispy Chicken</button>
+                <button className='menu-button'>Burgers</button>
+                <button className='menu-button'>Snacks & Bites</button>
+                <button className='menu-button'>Wraps & Submarine</button>
+                <button className='menu-button'>Hot Drumlets</button>
+                <button className='menu-button'>KFC Biriyani</button>
+                <button className='menu-button'>Sides</button>
             </div>
             <div className='content-container'>
                 <div className='card-map'>
@@ -52,7 +51,7 @@ const MenuPage = () => {
                     ))}
                 </div>
                 <div className='cart-container'>
-                    <Cart cart={cart} />
+                    <Cart cart={cart} updateQuantity={updateQuantity} removeItem={removeItem} />
                 </div>
             </div>
         </div>

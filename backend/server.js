@@ -1,106 +1,68 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cors = require('cors');
-const multer = require('multer');
-const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
-// Middleware
+app.use(bodyParser.json());
 app.use(cors());
-app.use(express.json());
 
-// MongoDB connection
-mongoose.connect('mongodb://127.0.0.1:27017/KFC-original', { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => console.log('Connected to MongoDB'));
+mongoose.connect('mongodb://localhost:27017/KFC-original', { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Configure Multer for image uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
+const OrderSchema = new mongoose.Schema({
+    customerName: String,
+    address: String,
+    paymentInfo: String,
+    cart: Array,
+    total: Number,
+    status: { type: String, default: 'Pending' }
 });
-const upload = multer({ storage: storage });
 
-// Model
-const MainsData = require('./models/mains');
+const Order = mongoose.model('Order', OrderSchema);
 
-// Endpoint to handle image uploads along with other details
-app.post('/uploadMains', upload.single('image'), async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded' });
+app.get('/orders', async (req, res) => {
+    try {
+        const orders = await Order.find();
+        res.json(orders);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-    const { name, description, price } = req.body;
-    const imageUrl = `http://localhost:${PORT}/${req.file.path}`;
-    const mains = new MainsData({ name, description, price, imageUrl });
-    await mains.save();
-    res.status(201).json({ message: 'Mains data uploaded successfully', mains });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
 });
 
-// Retrieve mains data
-app.get('/getMains', async (req, res) => {
-  try {
-    const mains = await MainsData.find();
-    res.json(mains);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-// Registration route
-app.post('/register', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Username already exists' });
+app.post('/orders', async (req, res) => {
+    const order = new Order({
+        customerName: req.body.name,
+        address: req.body.address,
+        paymentInfo: req.body.paymentInfo,
+        cart: req.body.cart,
+        total: req.body.cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    });
+
+    try {
+        const newOrder = await order.save();
+        res.status(201).json(newOrder);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, password: hashedPassword });
-    await user.save();
-    res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
 });
 
-// Login route
-app.post('/login', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid username or password' });
+app.put('/orders/:id', async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.id);
+        if (order) {
+            order.status = req.body.status;
+            await order.save();
+            res.json(order);
+        } else {
+            res.status(404).json({ message: 'Order not found' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid username or password' });
-    }
-    const token = jwt.sign({ userId: user._id }, 'your_secret_key');
-    res.json({ message: 'Login successful', token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
 });
 
-// Serve uploaded images
-app.use(express.static('uploads'));
-
-// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -4,7 +4,7 @@ import HomePage from './components/pages/HomePage/HomePage'
 import MenuPage from './components/pages/MenuPage/MenuPage'
 import LoginPage from './components/Forms/Login/Login'
 import BurgersPage from './components/pages/Burgers/Burgers'
-import BiriyaniPage from './components/pages/Biriyani/Biriyani'
+
 import BeveragesPage from './components/pages/Beverages/Beverages'
 import WrapsPage from './components/pages/Wraps/Wraps'
 import DessertsPage from './components/pages/Desserts/Desserts'
@@ -25,7 +25,7 @@ const App = () => {
               <Route path='/promotions' element={<Promotions/>}/>
               <Route path='/menu/mains' element={<MenuPage/>}/>
               <Route path='/menu/burgers' element={<BurgersPage/>}/>
-              <Route path='/menu/biriyanis' element={<BiriyaniPage/>}/>
+    
               <Route path='/menu/beverages' element={<BeveragesPage/>}/>
               <Route path='/menu/desserts' element={<DessertsPage/>}/>
               <Route path='/menu/wraps' element={<WrapsPage/>}/>

@@ -1,32 +1,149 @@
+/* src/components/HomePage/HomePage.css */
 .home-container {
-    position: relative;
-  }
-  
-  .image-container {
-    position: relative;
-    overflow: hidden; /* Ensures the button is not visible outside the image */
-  }
-  
-  .slide-3 {
-    width: 100%;
-    height: auto;
-  }
-  
-  .overlap-button {
-    position: absolute;
-    bottom: 50%; /* Positions the button vertically centered on the bottom half of the image */
-    left: 50%; /* Positions the button horizontally centered on the image */
-    transform: translate(-50%, 50%); /* Moves the button half its height upwards and half its width to the left */
-  }
-  
-.order-button{
-    height: 70px;
-    width: 300px;
-    background-color: #a41e1e;
-    color: #ffffff;
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    margin-left: 650px;
-    box-shadow: none;
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.hero-section {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.slide-3 {
+  width: 100%;
+  height: auto;
+  opacity: 0.8;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-text h1 {
+  font-size: 3em;
+}
+
+.hero-text p {
+  font-size: 1.2em;
+}
+
+.order-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.order-button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+.featured-products {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.featured-products h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product {
+  text-align: center;
+}
+
+.product img {
+  width: 150px;
+  height: 150px;
+}
+
+.product h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.product p {
+  font-size: 1em;
+  color: #a41e1e;
+}
+
+.testimonials {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.testimonial {
+  margin-bottom: 20px;
+}
+
+.testimonial p {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.testimonial h4 {
+  font-size: 1em;
+  font-weight: normal;
+  color: #555;
+}
+
+.newsletter {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.newsletter h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.newsletter p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.newsletter form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.newsletter input[type='email'] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.newsletter button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #69C28C;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

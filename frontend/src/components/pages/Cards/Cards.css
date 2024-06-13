@@ -1,47 +1,49 @@
 .cards {
-    height: 400px;
-    width: 200px;
-    border-radius: 20px;
-    margin-top: 10px;
-    margin-left: 8px;
-    background-color: #9A1212;
-    display: flex;
-    flex-direction: row;
-    color: #ffff;
-    position: relative; /* Add position: relative for the lifting effect */
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition for box-shadow and transform */
-  }
-  
-  .cards:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-4px); /* Lift up effect */
-  }
-  
-  .image {
-    height: 150px;
-    width: 200px;
-    border-bottom: 1px;
-    border-radius: 20px;
-  }
-  
-  .description {
-    font-size: small;
-  }
-  
-  .price {
-    margin-top: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .addtocart {
-    height: 40px;
-    width: 150px;
-    background-color: #FF0000;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-right: 10px;
-    box-shadow: none;
-  }
-  
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 200px; /* Fixed width */
+  height: 350px; /* Fixed height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px; /* Margin for spacing */
+}
+
+.image-box {
+  flex: 1 0 auto; /* Flex for the image section */
+  text-align: center; /* Center the image */
+}
+
+.image {
+  width: 100%;
+  height: 150px; /* Fixed height for image */
+  object-fit: cover; /* Cover the container without stretching */
+}
+
+.details {
+  padding: 10px;
+  flex: 1 1 auto; /* Flex for the text section */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.details p {
+  margin: 10px 0;
+}
+
+.addtocart {
+  padding: 10px 15px;
+  background-color: #a41e1e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: auto; /* Push the button to the bottom */
+}
+
+.addtocart:hover {
+  background-color: #b53232;
+}
